@@ -1,0 +1,68 @@
+<div class="panel panel-primary">
+    <div class="panel-body">
+      <form  (ngSubmit)="OnSubmit(f)" #f="ngForm"  >
+        <div class="row">
+          <div class="col-sm-10 offset-1 text-center">
+            <h2>FrontEnd-Technical-Test</h2>
+          </div>
+          <div class="col-sm-4 offset-4">
+            <div class="form-group">
+              <label class="col-md-6">Credit Card Number</label>
+              <input type="text" class="form-control" required [(ngModel)]="model.CreditCardNumber" name="CreditCardNumber" placeholder="Credit Card Number" />
+              <span align="start" *ngIf="formErrors.CreditCardNumber" class="form_error">{{ formErrors.CreditCardNumber }}</span>
+            </div>
+            <div class="form-group">
+              <label class="col-md-6">Card Holder</label>
+              <input type="text" class="form-control" required [(ngModel)]="model.CardHolder" name="CardHolder" placeholder="Card Holder" />
+              <span align="start" *ngIf="formErrors.CardHolder" class="form_error">{{ formErrors.CardHolder }}</span>
+        </div>
+        <div class="form-group">
+          <label class="col-md-6">Expiration Date</label>
+          <input type="date" class="form-control" validateGreaterDate="ExpirationDate,CurrentDate"  required [(ngModel)]="model.ExpirationDate" name="ExpirationDate" placeholder="Expiration Date" />
+          <span align="start" *ngIf="formErrors.ExpirationDate" class="form_error">{{ formErrors.ExpirationDate }}</span>
+          <input type="date" style="display: none;" class="form-control" [(ngModel)]="CurrentDate" name="CurrentDate" />
+        </div>
+        <div class="form-group">
+          <label class="col-md-6">Security Code CCV</label>
+          <input type="number" class="form-control" required min="100" max="999" [(ngModel)]="model.SecurityCodeCCV" name="SecurityCodeCCV" placeholder="Security Code CCV" />
+          <span align="start" *ngIf="formErrors.SecurityCodeCCV" class="form_error">{{ formErrors.SecurityCodeCCV }}</span>
+          </div>
+          <div class="form-group">
+            <label class="col-md-6">Amount</label>
+            <input type="number" class="form-control" required min="1" [(ngModel)]="model.Amount" name="Amount" placeholder="Amount" />
+            <span align="start" *ngIf="formErrors.Amount" class="form_error">{{ formErrors.Amount }}</span>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-info actionButton"  >Add Credit Card  </button>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-10 offset-1">
+    <h3>List Of Credit Card</h3>
+<table class="table table-hover" >    
+  <thead>
+  <tr>
+      <td>Credit Card Number</td>
+      <td>Card Holder</td>
+      <td>Expire Date</td>
+      <td>Security Code CCV</td>
+      <td>Amount</td>
+  </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let cCard of creditCardList">
+          <td>{{cCard.CreditCardNumber}}</td>
+          <td>{{cCard.CardHolder}}</td>
+          <td>{{cCard.ExpirationDate}}</td>
+          <td>{{cCard.SecurityCodeCCV}}</td>
+          <td>{{cCard.Amount}}</td>
+      </tr>
+  </tbody>
+  </table>
+</div>
+</div>
